@@ -23,6 +23,8 @@ uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
 numeric = ["1234567890"]
 special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
 securePassword = "writePassword function output"
+yes = ["Yes", "yes", "Y", "y", "Yar", "yar", "Yes please", "yes please", "Yup", "yup"]
+no = ["No", "no", "N", "n", "No thanks", "no thanks", "Nope", "nope"]
 
 //querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
 var generateBtn = document.querySelector("#generate"); 
@@ -32,36 +34,24 @@ generateBtn.addEventListener("click", writePassword); {
   document.getElementById("password").placeholder = securePassword;
 };
 
-//----Cuttoff. If we comment out here down, pop-up will still work
 function writePassword() {
   userInput = prompt("Please select a password length between 8 and 128 characters.", [8]);
     if (!userInput || userInput <= 7 || userInput >= 129) {
       alert("Please enter a whole number between 8 and 128.");
     } else {
-      alert("This worked.");
-    };
-  };
-/*
-
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-};
-
-// Write password to the #password input (THIS IS THE ORIGINAL. KEEP FOR REFERENCE.)
-/*function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}*/
-
-
-
-//An If else if to go through questions. Will need pop-ups/alerts (what are they called?) and some way to validate input before moving on.
-function passwordGenerator() {
-
-};
+      prompt("Should your password include lowercase letters?", ["Yes"]);
+      if (!userInput || !yes.includes(userInput) && no.includes(userInput)) {
+        alert(`Please enter "Yes" or "No"`);
+      } else {
+        prompt("Should your password include UPPERCASE letters?", ["Yes"]);
+        if (!userInput || !yes.includes(userInput) && no.includes(userInput)) {
+        alert(`Please enter "Yes" or "No"`);
+          } else
+          prompt("Should your password include special characters (!#$%)?", ["Yes"]);
+          if (!userInput || !yes.includes(userInput) && no.includes(userInput)) {
+          alert(`Please enter "Yes" or "No"`);
+            } else
+            alert("Done");
+      }
+    }
+  }
