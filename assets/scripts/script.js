@@ -13,6 +13,7 @@ let userInputConcat;
 let computerChoice;
 let generatePassword;
 let password = [];
+let passwordText;
 
 //Variables for questions (could convert to array and push lower case letters, Upper,etc. Not that many questions, though...)
 //QUESTION: How to concatinate with /n/r between strings? Have input spaces to appear properly, for now.
@@ -36,12 +37,11 @@ let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 let numeric = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 let special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
 
+//Variables for confirm
 let confirmLower;
 let confirmUpper;
 let confirmNumeric;
 let confirmSpecial;
-
-//Arrays for confirm and potential userInputConcats
 
 //All 4 dataset option
 let concat0123 = lowercase.concat(uppercase, numeric, special); 
@@ -63,13 +63,13 @@ var generateBtn = document.querySelector("#generate"); // Original Text
 
 //When the button is clicked, start the process that will put the password in the box. The result of writePassword (when complete...(I keep getting all the steps displaying. Make a v for the final password.)), should appear there. 
 generateBtn.addEventListener("click", writePassword); 
-document.getElementById("password").placeholder = password;
+document.getElementById("password").placeholder = "Your Password Will Appear Here";
 
 function writePassword() {
   alert(qPWStrong);  
   userInputLength = prompt(qPWLength, [8]);
   userInputLength = parseInt(userInputLength, 10);
-    if (!userInputLength || userInputLength <= 7 || userInputLength >= 129) {
+    if (!userInputLength || userInputLength <= 7 || userInputLength >= 129) { //TO DO: Add error for non-number entered
       alert(qPWLengthFinalError); 
     } else {
       confirmLower = confirm((qPWLower + qInstruct), [aYes]);
@@ -110,32 +110,20 @@ function writePassword() {
       userInputConcat = concat23;
     };
 
-      for (var i = 0; i < userInputLength; i++) {
-        computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
-        password.push(computerChoice);
-        console.log(password);
-      };
+    for (var i = 0; i < userInputLength; i++) {
+      computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
+      password.push(computerChoice);
+      console.log(password);
+    };
 
-  password = (password.join(""));
-  password.toString(); //QUESTION: How to convert the password array to a string? This doesn't seem to work.
-  console.log(password);
-  password.typeof();
+    password = (password.join(""));
+    console.log(password);
+    passwordText = document.querySelector("#password");
+    passwordText.value = password;
+    document.getElementById("password").textContent = password;
+    document.querySelectorAll("Generated Password") = password;
+    return;
 };
-
-/*
-// Assignment Code
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-*/
 
   //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
       //if (!userInput || userInput <= 7 || userInput >= 129) {
