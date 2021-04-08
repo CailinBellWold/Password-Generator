@@ -8,9 +8,9 @@ let askNumeric;
 let askSpecial; 
 
 //Variables for Input and Output
-let userInput;
+let userInputLength;
 let userInputConcat;
-let securePassword = ("writePassword function output")
+let computerChoice;
 
 //Variables for questions (could convert to array and push lower case letters, Upper,etc. Not that many questions, though...)
 //QUESTION: How to concatinate with /n/r between strings? Have input spaces to appear properly, for now.
@@ -61,13 +61,13 @@ var generateBtn = document.querySelector("#generate");
 
 //When the button is clicked, start the process that will put the password in the box. The result of writePassword (when complete...(I keep getting all the steps displaying. Make a v for the final password.)), should appear there. 
 generateBtn.addEventListener("click", writePassword); 
-document.getElementById("password").placeholder = securePassword;
+document.getElementById("password").placeholder = computerChoice;
 
 function writePassword() {
   alert(qPWStrong);  
-  userInput = prompt(qPWLength, [8]);
-  console.log(userInput);
-    if (!userInput || userInput <= 7 || userInput >= 129) {
+  userInputLength = prompt(qPWLength, [8]);
+  userInputLength = parseInt(userInputLength, 10);
+    if (!userInputLength || userInputLength <= 7 || userInputLength >= 129) {
       alert(qPWLengthFinalError); 
     } else {
       confirmLower = confirm((qPWLower + qInstruct), [aYes]);
@@ -108,16 +108,11 @@ function writePassword() {
       userInputConcat = concat23;
     };
 
-    var index = Math.floor(Math.random() * userInputConcat.length);
-    var computerChoice = userInputConcat[index];
-    console.log(index);
-    console.log(computerChoice);
+    for (var i = 0; i < userInputLength; i++) {
+      computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
+      console.log(computerChoice);
+    };
 }
-
-
-
-//Length
-
 
   /*
   //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
