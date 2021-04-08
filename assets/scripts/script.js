@@ -11,6 +11,8 @@ let askSpecial;
 let userInputLength;
 let userInputConcat;
 let computerChoice;
+let generatePassword;
+let password = [];
 
 //Variables for questions (could convert to array and push lower case letters, Upper,etc. Not that many questions, though...)
 //QUESTION: How to concatinate with /n/r between strings? Have input spaces to appear properly, for now.
@@ -57,11 +59,11 @@ let concat13 = uppercase.concat(special);
 let concat23 = numeric.concat(special);
 
 //Looks for Generate ID in HTML doc, gives it a varaiable
-var generateBtn = document.querySelector("#generate"); 
+var generateBtn = document.querySelector("#generate"); // Original Text
 
 //When the button is clicked, start the process that will put the password in the box. The result of writePassword (when complete...(I keep getting all the steps displaying. Make a v for the final password.)), should appear there. 
 generateBtn.addEventListener("click", writePassword); 
-document.getElementById("password").placeholder = computerChoice;
+document.getElementById("password").placeholder = password;
 
 function writePassword() {
   alert(qPWStrong);  
@@ -108,40 +110,33 @@ function writePassword() {
       userInputConcat = concat23;
     };
 
-    for (var i = 0; i < userInputLength; i++) {
-      computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
-      console.log(computerChoice);
-    };
-}
+      for (var i = 0; i < userInputLength; i++) {
+        computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
+        password.push(computerChoice);
+        console.log(password);
+      };
 
-  /*
-  //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
-      //if (!userInput || userInput <= 7 || userInput >= 129) {
-    //    alert(qPWLengthFinalError);
-
-      // Get random index from array of options
-  //var index = Math.floor(Math.random() * lowercase.length);
-  //var computerChoice = lowercase[index];
-
-
-
- //     if (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {}
-
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  password = (password.join(""));
+  password.toString(); //QUESTION: How to convert the password array to a string? This doesn't seem to work.
+  console.log(password);
+  password.typeof();
 };
 
-Write password to the #password input (THIS IS THE ORIGINAL. KEEP FOR REFERENCE.)
+/*
+// Assignment Code
+// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
-An If else if to go through questions. Will need pop-ups/alerts (what are they called?) and some way to validate input before moving on.
-function passwordGenerator() {
-};
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 */
+
+  //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
+      //if (!userInput || userInput <= 7 || userInput >= 129) {
+    //    alert(qPWLengthFinalError);
