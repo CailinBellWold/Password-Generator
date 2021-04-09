@@ -59,7 +59,7 @@ let concat13 = uppercase.concat(special);
 let concat23 = numeric.concat(special);
 
 //Looks for Generate ID in HTML doc, gives it a varaiable
-var generateBtn = document.querySelector("#generate"); // Original Text
+var generateBtn = document.querySelector("#generate");
 
 //When the button is clicked, start the process that will put the password in the box. The result of writePassword (when complete...(I keep getting all the steps displaying. Make a v for the final password.)), should appear there. 
 generateBtn.addEventListener("click", writePassword); 
@@ -69,8 +69,9 @@ function writePassword() {
   alert(qPWStrong);  
   userInputLength = prompt(qPWLength, [8]);
   userInputLength = parseInt(userInputLength, 10);
-    if (!userInputLength || userInputLength <= 7 || userInputLength >= 129) { //TO DO: Add error for non-number entered
+    if (!userInputLength || userInputLength <= 7 || userInputLength >= 129 || userInputLength.value == NaN) {
       alert(qPWLengthFinalError); 
+      return;
     } else {
       confirmLower = confirm((qPWLower + qInstruct), [aYes]);
       console.log(confirmLower); // True
@@ -125,6 +126,16 @@ function writePassword() {
     return;
 };
 
-  //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
-      //if (!userInput || userInput <= 7 || userInput >= 129) {
-    //    alert(qPWLengthFinalError);
+//let reset = document.getElementById("password").textContent.placeholder = "Your Password Will Appear Here";
+//generateBtn.addEventListener("click", reset, writePassword);
+
+//TO DO: 
+  //Required: 
+  //Add breaks without all of the spaces.
+
+  //Would be nice: 
+   //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
+       //if (!userInput || userInput <= 7 || userInput >= 129) {
+      //    alert(qPWLengthFinalError);
+  //Clear old password when button selected again.
+  //Add Copy button
