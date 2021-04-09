@@ -1,6 +1,6 @@
 // Assignment Code
 
-//Variables for all PW preferences.
+//Variables for all PW preferences
 let askLength;
 let askLowercase;
 let askUppercase;
@@ -15,14 +15,13 @@ let generatePassword;
 let password = [];
 let passwordText;
 
-//Variables for questions (could convert to array and push lower case letters, Upper,etc. Not that many questions, though...)
-//QUESTION: How to concatinate with /n/r between strings? Have input spaces to appear properly, for now.
+//Variables for Questions
 let qPWStrong = ("Strong passwords include UPPER and lowercase letters, numerals and special characters. We will ask you a series of questions to determine which components you would like in your password. LET'S BEGIN!")
-let qPWLength = ("Please select a password length between 8 and 128 characters.    ")
-let qPWLower = ("Should your password include lowercase letters?                                  ")
-let qPWUpper = ("Should your password include UPPERCASE letters?                               ")
-let qPWNumeric = ("Should your password include numerals (123)?                                      ")
-let qPWSpecial = (`Should your password include special characters (!#$%)?                     `)
+let qPWLength = ("Please select a password length between 8 and 128 characters.\n")
+let qPWLower = ("Should your password include lowercase letters?\n")
+let qPWUpper = ("Should your password include UPPERCASE letters?\n")
+let qPWNumeric = ("Should your password include numerals (123)?\n")
+let qPWSpecial = (`Should your password include special characters (!#$%)?\n`)
 let qInstruct = ("OK for YES / Cancel for NO")
 let aYes = ("Yes")
 
@@ -31,26 +30,26 @@ let qPWLengthError = ("ERROR: Please enter a whole number between 8 and 128.")
 let qPWLengthFinalError = (`Our password generator requires passwords to be between 8 and 128 characters. Please click the "Generate Password" button to try again.`)
 let qPWAllFalseError = (`ERROR: At least one character type must be selected in order to generate a password. Please click the "Generate Password" button to try again.`)
 
-//Arrays for password-generating data sets
+//Arrays for Password-Generating Data Sets
 let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 let numeric = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 let special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
 
-//Variables for confirm
+//Variables for Confirm
 let confirmLower;
 let confirmUpper;
 let confirmNumeric;
 let confirmSpecial;
 
-//All 4 dataset option
+//All 4 Dataset Option
 let concat0123 = lowercase.concat(uppercase, numeric, special); 
-//All 3 dataset options
+//All 3 Dataset Options
 let concat012 = lowercase.concat(uppercase, numeric);
 let concat013 = lowercase.concat(uppercase, special);
 let concat023 = lowercase.concat(numeric, special);
 let concat123 = uppercase.concat(numeric, special);
-//All 2 dataset options
+//All 2 Dataset Options
 let concat01 = lowercase.concat(uppercase);
 let concat02 = lowercase.concat(numeric);
 let concat03 = lowercase.concat(special);
@@ -130,9 +129,6 @@ function writePassword() {
 //generateBtn.addEventListener("click", reset, writePassword);
 
 //TO DO: 
-  //Required: 
-  //Add breaks without all of the spaces.
-
   //Would be nice: 
    //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
        //if (!userInput || userInput <= 7 || userInput >= 129) {
