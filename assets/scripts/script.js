@@ -1,137 +1,105 @@
-// Assignment Code
+// VARIABLE AND ARRAY SETS
 
-//Variables for all PW preferences
+// Input and Output
+let userInputLength;
+let userInputConcat;
+let computerChoice;
+let password = [];
+let passwordText;
+
+// Password Preferences
 let askLength;
 let askLowercase;
 let askUppercase;
 let askNumeric;
 let askSpecial; 
 
-//Variables for Input and Output
-let userInputLength;
-let userInputConcat;
-let computerChoice;
-let generatePassword;
-let password = [];
-let passwordText;
+// Instruction Text
+let iPWStrong = ("Strong passwords include UPPER and lowercase letters, numerals and special characters. We will ask you a series of questions to determine which components you would like in your password. LET'S BEGIN!");
+let iYesNo = ("OK for YES / Cancel for NO");
 
-//Variables for Questions
-let qPWStrong = ("Strong passwords include UPPER and lowercase letters, numerals and special characters. We will ask you a series of questions to determine which components you would like in your password. LET'S BEGIN!")
-let qPWLength = ("Please select a password length between 8 and 128 characters.\n")
-let qPWLower = ("Should your password include lowercase letters?\n")
-let qPWUpper = ("Should your password include UPPERCASE letters?\n")
-let qPWNumeric = ("Should your password include numerals (123)?\n")
-let qPWSpecial = (`Should your password include special characters (!#$%)?\n`)
-let qInstruct = ("OK for YES / Cancel for NO")
-let aYes = ("Yes")
+// Question Text
+let qPWLength = ("Please select a password length between 8 and 128 characters.\n");
+let qPWLower = ("Should your password include lowercase letters? \n");
+let qPWUpper = ("Should your password include UPPERCASE letters? \n");
+let qPWNumeric = ("Should your password include numerals (123)? \n");
+let qPWSpecial = (`Should your password include special characters (!#$%)? \n`);
 
-//Variables for Error Messages
-let qPWLengthError = ("ERROR: Please enter a whole number between 8 and 128.")
-let qPWLengthFinalError = (`Our password generator requires passwords to be between 8 and 128 characters. Please click the "Generate Password" button to try again.`)
-let qPWAllFalseError = (`ERROR: At least one character type must be selected in order to generate a password. Please click the "Generate Password" button to try again.`)
+// Error Message Text
+let ePWLength = (`Our password generator requires passwords to be between 8 and 128 characters. Please click the "Generate Password" button to try again.`);
+let ePWCharTypeEmpty = (`At least one character type must be selected in order to generate a password. Please click the "Generate Password" button to try again.`);
 
-//Arrays for Password-Generating Data Sets
-let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-let numeric = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
-let special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
+// Password-Generating Data Sets
+let lowercase = ["abcdefghijklmnopqrstuvwxyz"];
+let uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+let numeric = [1234567890];
+let special = ["!,#,$,%,&,',(,),*,+,,,-,.,/,\:,\;,<,=,>,?,@,[,\\,],^,_,`,{,|,},~"];
 
-//Variables for Confirm
+// Confirm
 let confirmLower;
 let confirmUpper;
 let confirmNumeric;
 let confirmSpecial;
 
-//All 4 Dataset Option
-let concat0123 = lowercase.concat(uppercase, numeric, special); 
-//All 3 Dataset Options
-let concat012 = lowercase.concat(uppercase, numeric);
-let concat013 = lowercase.concat(uppercase, special);
-let concat023 = lowercase.concat(numeric, special);
-let concat123 = uppercase.concat(numeric, special);
-//All 2 Dataset Options
-let concat01 = lowercase.concat(uppercase);
-let concat02 = lowercase.concat(numeric);
-let concat03 = lowercase.concat(special);
-let concat12 = uppercase.concat(numeric);
-let concat13 = uppercase.concat(special);
-let concat23 = numeric.concat(special);
+// Assigns Variable to ID "generate"
+let generateBtn = document.querySelector("#generate");
 
-//Looks for Generate ID in HTML doc, gives it a varaiable
-var generateBtn = document.querySelector("#generate");
+//ACTION BEGINS HERE
 
-//When the button is clicked, start the process that will put the password in the box. The result of writePassword (when complete...(I keep getting all the steps displaying. Make a v for the final password.)), should appear there. 
+// Clicking Generate Button Initializes writePassword Function and Placeholder Text Appears. 
 generateBtn.addEventListener("click", writePassword); 
 document.getElementById("password").placeholder = "Your Password Will Appear Here";
 
+// Queries the User about their Preferences and Writes Password
 function writePassword() {
-  alert(qPWStrong);  
+
+  // Alerts User to Strong Password Qualities and Upcoming Question Series
+  alert(iPWStrong);  
+
+  // Asks User for Preferred Passsword Length and Sets Default at 8
   userInputLength = prompt(qPWLength, [8]);
+
+  // Converts UserInput from a String to a Number
   userInputLength = parseInt(userInputLength, 10);
-    if (!userInputLength || userInputLength <= 7 || userInputLength >= 129 || userInputLength.value == NaN) {
-      alert(qPWLengthFinalError); 
-      return;
-    } else {
-      confirmLower = confirm((qPWLower + qInstruct), [aYes]);
-      console.log(confirmLower); // True
-      confirmUpper = confirm((qPWUpper + qInstruct), [aYes]);
-      console.log(confirmUpper); // True
-      confirmNumeric = confirm((qPWNumeric + qInstruct), [aYes]);
-      console.log(confirmNumeric); // True
-      confirmSpecial = confirm((qPWSpecial + qInstruct), [aYes]);
-      console.log(confirmSpecial); // True
-    };
 
-    let confirmArray = [confirmLower, confirmUpper, confirmNumeric, confirmSpecial];
-
-    if (!confirmArray[0] && !confirmArray[1] && !confirmArray[2] && !confirmArray[3]) {
-      alert(qPWAllFalseError);
-    } else if (confirmArray[0] && confirmArray[1] && confirmArray[2] && confirmArray[3]) {
-      userInputConcat = concat0123;
-    } else if (confirmArray[0] && confirmArray[1] && confirmArray[2]) {
-      userInputConcat = concat012;
-    } else if (confirmArray[0] && confirmArray[1] && confirmArray[3]) {
-      userInputConcat = concat013;
-    } else if (confirmArray[0] && confirmArray[2] && confirmArray[3]) {
-      userInputConcat = concat023;
-    } else if (confirmArray[1] && confirmArray[2] && confirmArray[3]) {
-      userInputConcat = concat123;
-    } else if (confirmArray[0] && confirmArray[1]) {
-      userInputConcat = concat01;
-    } else if (confirmArray[0] && confirmArray[2]) {
-      userInputConcat = concat02;
-    } else if (confirmArray[0] && confirmArray[3]) {
-      userInputConcat = concat03;
-    } else if (confirmArray[1] && confirmArray[2]) {
-      userInputConcat = concat12;
-    } else if (confirmArray[1] && confirmArray[3]) {
-      userInputConcat = concat13;
-    } else if (confirmArray[2] && confirmArray[3]) {
-      userInputConcat = concat23;
-    };
-
-    for (var i = 0; i < userInputLength; i++) {
-      computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
-      password.push(computerChoice);
-      console.log(password);
-    };
-
-    password = (password.join(""));
-    console.log(password);
-    passwordText = document.querySelector("#password");
-    passwordText.value = password;
-    document.getElementById("password").textContent = password;
-    document.querySelectorAll("Generated Password") = password;
+  // Validates UserInputLength Data and Sends Error Message if Invalid
+  if (!userInputLength || userInputLength <= 7 || userInputLength >= 129 || userInputLength.value == NaN) {
+    alert(ePWLength); 
     return;
+
+  // Asks User Their Character-Type Preferences 
+  } else {
+    confirmLower = confirm(qPWLower + iYesNo);
+    confirmUpper = confirm(qPWUpper + iYesNo);
+    confirmNumeric = confirm(qPWNumeric + iYesNo);
+    confirmSpecial = confirm(qPWSpecial + iYesNo);
+  };
+
+  // Concatenates User Character-Type Responses into Single Array
+  userInputConcat = [];
+  userInputConcat += (confirmLower ? lowercase : "");
+  userInputConcat += (confirmUpper ? uppercase : "");
+  userInputConcat += (confirmNumeric ? numeric : "");
+  userInputConcat += (confirmSpecial ? special : "");
+
+  // Sends Error Message if Character-Type Array is Empty
+  if (userInputConcat == "") {
+    alert(ePWCharTypeEmpty);
+    return;
+  };
+
+  // Generates Character String Array (Comma-seperated String)
+  for (var i = 0; i < userInputLength; i++) {
+    computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
+    password.push(computerChoice);
+  };
+
+  // Joins Array into Single String
+  password = (password.join(""));
+
+  // Assigns passwordText Variable to password ID in HTML
+  passwordText = document.querySelector("#password");
+
+  // Passes the Password to the HTML Page
+  passwordText.value = password;
 };
-
-//let reset = document.getElementById("password").textContent.placeholder = "Your Password Will Appear Here";
-//generateBtn.addEventListener("click", reset, writePassword);
-
-//TO DO: 
-  //Would be nice: 
-   //Second chance: how to include after first password length entered incorrect? USE A WHILE LOOP ONCE EVERYTHING WORKS
-       //if (!userInput || userInput <= 7 || userInput >= 129) {
-      //    alert(qPWLengthFinalError);
-  //Clear old password when button selected again.
-  //Add Copy button
