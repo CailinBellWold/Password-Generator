@@ -25,7 +25,7 @@ This exercise required building a page from scratch using the HTML and CSS skill
 
 ## Screen Shot
 
-![My password generator, including heading, "Generate Password" button and display area.](./assets/images/Password-Generator-Screenshot01.png) 
+![My password generator, including heading, "Generate Password" button and display area.](./assets/images/Password-Generator-Screenshot1.png) 
 
 ## Deployed Application
 

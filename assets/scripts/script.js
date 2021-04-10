@@ -26,14 +26,15 @@ let qPWNumeric = ("Should your password include numerals (123)? \n");
 let qPWSpecial = (`Should your password include special characters (!#$%)? \n`);
 
 // Error Message Text
-let ePWLength = (`Our password generator requires passwords to be between 8 and 128 characters. Please click the "Generate Password" button to try again.`);
-let ePWCharTypeEmpty = (`At least one character type must be selected in order to generate a password. Please click the "Generate Password" button to try again.`);
+let ePWLength = (`OOPS! We generate passwords that are between 8 and 128 characters in length. Your entry fell outside of these parameters. \n\nPlease select "OK" to try again.`);
+let ePWLengthBlank = (`OOPS! Your requested password length was blank/0 or wasn't a digit. \n\nPlease click the "Generate Password" button to try again.`);
+let ePWCharTypeEmpty = (`OOPS! At least one character type must be selected in order to generate a password. \n\nPlease click the "Generate Password" button to try again.`);
 
 // Password-Generating Data Sets
-let lowercase = ["abcdefghijklmnopqrstuvwxyz"];
-let uppercase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-let numeric = [1234567890];
-let special = ["!,#,$,%,&,',(,),*,+,,,-,.,/,\:,\;,<,=,>,?,@,[,\\,],^,_,`,{,|,},~"];
+let lowercase = "abcdefghijklmnopqrstuvwxyz";
+let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let numeric = 1234567890;
+let special = "!#$%&'()*+,-./\:\;<=>?@[\\]^_`{|}~";
 
 // Confirm
 let confirmLower;
@@ -62,17 +63,22 @@ function writePassword() {
   // Converts UserInput from a String to a Number
   userInputLength = parseInt(userInputLength, 10);
 
-  // Validates UserInputLength Data and Sends Error Message if Invalid
-  if (!userInputLength || userInputLength <= 7 || userInputLength >= 129 || userInputLength.value == NaN) {
-    alert(ePWLength); 
-    return;
-
+  // Validates UserInputLength Data and Sends Error and/or Restarts Loop Message if Invalid
+  if (!userInputLength || userInputLength <= 7 || userInputLength >= 129) {
+    if (!userInputLength) {
+      alert(ePWLengthBlank);
+      return;
+    } else if (userInputLength <= 7 || userInputLength >= 129) {
+      alert(ePWLength);
+      return writePassword();
+    };
+    
   // Asks User Their Character-Type Preferences 
-  } else {
-    confirmLower = confirm(qPWLower + iYesNo);
-    confirmUpper = confirm(qPWUpper + iYesNo);
-    confirmNumeric = confirm(qPWNumeric + iYesNo);
-    confirmSpecial = confirm(qPWSpecial + iYesNo);
+    } else {
+      confirmLower = confirm(qPWLower + iYesNo);
+      confirmUpper = confirm(qPWUpper + iYesNo);
+      confirmNumeric = confirm(qPWNumeric + iYesNo);
+      confirmSpecial = confirm(qPWSpecial + iYesNo);
   };
 
   // Concatenates User Character-Type Responses into Single Array
@@ -88,18 +94,15 @@ function writePassword() {
     return;
   };
 
+  // Clears Password Value Between Password Generations if User Loops Through more than Once
+  password = "";
+
   // Generates Character String Array (Comma-seperated String)
   for (var i = 0; i < userInputLength; i++) {
     computerChoice = userInputConcat[Math.floor(Math.random() * userInputConcat.length)];
-    password.push(computerChoice);
+    password += computerChoice;
   };
 
-  // Joins Array into Single String
-  password = (password.join(""));
-
-  // Assigns passwordText Variable to password ID in HTML
-  passwordText = document.querySelector("#password");
-
-  // Passes the Password to the HTML Page
-  passwordText.value = password;
+  // Assigns passwordText Variable to password ID in HTML and Passes the Password to the HTML Page
+  document.querySelector("#password").value = password;
 };
