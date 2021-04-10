@@ -15,7 +15,7 @@ This exercise encompassed building a JavaScript page inclusive of assigning vari
 
 1. Clicking the "Generate Password" button presents a series of prompts for password criteria.
 2. Password criteria includes the length of the password (at least 8 characters and no more than 128 characters).
-3. Password criteria includes character types to include - or - exclude from the password.
+3. Password criteria includes character types to include/exclude from the password.
 4. Character type options include lowercase, uppercase, numeric and special characters.
 5. User input is validated for password length and a minimum of one character type selected.
 6. A password is generated that matches the selected criteria.
