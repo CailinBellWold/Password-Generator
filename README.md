@@ -1,27 +1,25 @@
-# Homework03
 # 03 JavaScript: Password Generator
 
 ## Description
 
-Create a **deployed** and **functional password generator** by updating JavaScript to operate in conjunction with a pre-existing HTML doc and style sheet.
+Create a **deployed** and **functional password generator** by writing JavaScript that queries the user for preferences and updates content on a pre-existing webpage.
 
 ### Motivation
 
-As I take first-steps in my career as a web developer, a well-designed portfolio, which showcases my work, skillsets, and values is invaluable to securing my first employment or internship.  
-
-This page will be updated and rebuilt over time, but is a wonderful opportunity to showcase my growing skillsets.    
+As my first foray into writing JavaScript, this project presented many fun opportunities. It challenged me to consider both information flow and user experience, to research how computers generate random numbers, and to push myself beyond the bare-bones scope of the assignment to streamline long code (shoutout to ternary operators), and to achieve a flow that provdes a more intuitive experience for the user. 
 
 ### Learning Targets
-This exercise required building a page from scratch using the HTML and CSS skills gained over the first three weeks of class. Infusing the page with a bit of my own personality while navigating nascent flex-box and media-query skills were this week's challenges met. 
+This exercise encompassed building a JavaScript page inclusive of assigning variables and arrays, creating for loops and if/else statements, using ternary operators to concatenate arrays that matched user input, validating user input, and returning text to the screen.
 
 ## Core Objectives Met
 
-1. Includes developer's name, a recent photo, and links to sections about me, my work, and how to contact me.
-2. Navigation links scroll to the appropriate corresponding sections. 
-3. The Work section includes titled images of my applications. 
-4. The first application's image in the Work section is larger in size than the others.
-5. The application images link to deployed applications. (Note: At the time this was first published, I had just one portfolio item deployed. Additional applications will be added as Boot Camp progresses.)
-5. The page responsively adapts to viewport sizing. 
+1. Clicking the "Generate Password" button presents a series of prompts for password criteria.
+2. Password criteria includes the length of the password (at least 8 characters and no more than 128 characters).
+3. Password criteria includes character types to include - or - exclude from the password.
+4. Character type options include lowercase, uppercase, numeric and special characters.
+5. User input is validated for password length and a minimum of one character type selected.
+6. A password is generated that matches the selected criteria.
+7. The newly generated password is written to the page.
 
 ## Screen Shot
 
